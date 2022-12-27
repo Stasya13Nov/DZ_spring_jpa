@@ -13,6 +13,7 @@ import java.util.Queue;
 @Repository
 public class BookDaoImpl implements BookDAO{
     private static final String GET_ALL = "SELECT b FROM Book b";
+    private static final String GET_BY_NAME = "SELECT b FROM Book b WHERE b.name = :name";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -48,5 +49,12 @@ public class BookDaoImpl implements BookDAO{
     public Book create(Book book) {
         entityManager.persist(book);
         return book;
+    }
+
+    @Override
+    public List<Book> getByName(String name) {
+        Query query = entityManager.createQuery(GET_BY_NAME);
+        query.setParameter("name", name);
+        return query.getResultList();
     }
 }

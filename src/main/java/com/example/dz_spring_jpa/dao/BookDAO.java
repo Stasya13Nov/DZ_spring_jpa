@@ -12,5 +12,6 @@ public interface BookDAO {
     Book update(Book book);
 
     Book create(Book book);
+    List<Book> getByName(String name);
 
 }

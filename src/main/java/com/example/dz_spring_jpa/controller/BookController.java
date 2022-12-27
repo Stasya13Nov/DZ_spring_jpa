@@ -32,10 +32,14 @@ public class BookController {
     public Book create(@RequestBody Book book) {
         return bookService.create(book);
     }
-    @PutMapping(value = "/update")
+    @PatchMapping(value = "/update")
     public Book update(@RequestBody Book book) {
        Book bookUp = bookService.update(book);
        return bookUp;
+    }
+    @GetMapping(value = "search-name")
+    public List<Book> getByName(@RequestParam String name){
+        return bookService.getByName(name);
     }
 
 }

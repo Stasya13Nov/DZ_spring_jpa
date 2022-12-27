@@ -36,4 +36,9 @@ public class BookServiceImpl implements BookService{
     public Book create(Book book) {
         return bookDAO.create(book);
     }
+
+    @Override
+    public List<Book> getByName(String name) {
+        return bookDAO.getByName(name);
+    }
 }
