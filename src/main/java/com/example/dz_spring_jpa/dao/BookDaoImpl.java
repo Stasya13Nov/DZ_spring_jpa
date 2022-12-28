@@ -37,18 +37,12 @@ public class BookDaoImpl implements BookDAO{
         entityManager.flush();
     }
 
-    @Override
-    @Transactional
-    public Book update(Book book) {
-        entityManager.merge(book);
-        return book;
-    }
 
     @Override
     @Transactional
-    public Book create(Book book) {
-        entityManager.persist(book);
-        return book;
+    public void save(Book book) {
+        Book newBook = entityManager.merge(book);
+        book.setId(newBook.getId());
     }
 
     @Override
