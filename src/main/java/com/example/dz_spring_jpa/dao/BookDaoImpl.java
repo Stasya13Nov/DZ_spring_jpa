@@ -14,6 +14,9 @@ import java.util.Queue;
 public class BookDaoImpl implements BookDAO{
     private static final String GET_ALL = "SELECT b FROM Book b";
     private static final String GET_BY_NAME = "SELECT b FROM Book b WHERE b.name = :name";
+    private static final String GET_BY_PAGE = "SELECT b FROM Book b WHERE b.countOfPage >= :countOfPage";
+
+    private static final String GET_BY_PREFIX = "SELECT b FROM Book b WHERE b.fio LIKE CONCAT('%',:prefix,'%')";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -51,4 +54,20 @@ public class BookDaoImpl implements BookDAO{
         query.setParameter("name", name);
         return query.getResultList();
     }
+
+    @Override
+    public List<Book> getByPage(int countOfPage) {
+        Query query = entityManager.createQuery(GET_BY_PAGE);
+        query.setParameter("countOfPage", countOfPage);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Book> getByPrefix(String prefix) {
+        Query query = entityManager.createQuery(GET_BY_PREFIX);
+        query.setParameter("prefix", prefix);
+        return query.getResultList();
+    }
+
+
 }

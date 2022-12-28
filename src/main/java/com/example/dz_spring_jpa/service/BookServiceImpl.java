@@ -36,4 +36,14 @@ public class BookServiceImpl implements BookService{
     public List<Book> getByName(String name) {
         return bookDAO.getByName(name);
     }
+
+    @Override
+    public List<Book> getByPage(int countOfPage) {
+        return bookDAO.getByPage(countOfPage);
+    }
+
+    @Override
+    public List<Book> getByPrefix(String prefix) {
+        return bookDAO.getByPrefix(prefix);
+    }
 }

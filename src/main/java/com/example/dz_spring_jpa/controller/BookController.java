@@ -43,5 +43,13 @@ public class BookController {
     public List<Book> getByName(@RequestParam String name){
         return bookService.getByName(name);
     }
+    @GetMapping(value = "search-countOfPage")
+    public List<Book> getByPage(@RequestParam int countOfPage){
+        return bookService.getByPage(countOfPage);
+    }
+    @GetMapping(value = "search-prefix")
+    public List<Book> getByPrefix(@RequestParam String prefix){
+        return bookService.getByPrefix(prefix);
+    }
 
 }

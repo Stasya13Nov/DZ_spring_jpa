@@ -11,5 +11,7 @@ public interface BookDAO {
 
     public void save(Book book); //create and update
     List<Book> getByName(String name);
+    List<Book> getByPage(int countOfPage);
+    List<Book> getByPrefix(String prefix);
 
 }
